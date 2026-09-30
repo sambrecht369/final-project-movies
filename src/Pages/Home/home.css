@@ -1,0 +1,115 @@
+
+
+.home .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home {
+   background-color: black;
+    min-height: 80vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.movie__header--home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home .container,
+.home .row,
+.home .movie__header {
+    background: transparent;
+}
+.image__wrapper img {
+    display: block;
+}
+
+.image__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.home__img {
+    width: 500px;
+    margin-top: 20px;
+}
+.section__title--home {
+    font-size: 48px;
+    color: white;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section__para--home {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 20px;
+}
+.home__search__input {
+    padding: 10px 30px;
+}
+
+.home__search__bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search__button__wrapper {
+    position: relative;
+    margin-left: 5px;
+}
+.search__button__wrapper .loading {
+    position: absolute;
+}
+.home__search__button {
+    position: relative;
+    background-color: #ff0404;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.loading--open {
+    position: absolute;
+    background-color: black;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: white 2px solid;
+}
+
+.loading .loading--open {
+    display: flex;
+}
+
+
+.fa-spinner {
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }}
+
+.home__search__button:hover {
+    background-color: #858383;
+}
+
+.home__search__bar .home__search__input {
+    border-radius: 15px !important;
+}
