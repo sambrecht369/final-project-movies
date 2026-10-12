@@ -94,18 +94,7 @@ React.useEffect(() => {
 }, []);
 
 
-function filterMovies(event) {
-  if (!Array.isArray(lastFetchedMovies) || lastFetchedMovies.length === 0) {
-    return;
-  }
-  let sortedMovies = [...lastFetchedMovies];
-  if (event.target.value === "A-Z") {
-    sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
-  } else if (event.target.value === "Z-A") {
-    sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title));
-  }
-  renderMovies(sortedMovies);
-}
+
 
 
 

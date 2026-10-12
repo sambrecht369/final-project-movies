@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function main() {
   const movies= await fetch(
-      `https://www.omdbapi.com/?s=${moviesData}&apikey=43083548`,
+      ` http://www.omdbapi.com/?i=tt3896198&apikey=43083548`,
     );
     const moviesData = movies.json();
   console.log (moviesData);

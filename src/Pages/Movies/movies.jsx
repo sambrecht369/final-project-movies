@@ -2,10 +2,10 @@ import React from 'react'
 import './movies.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 function Movies() {
-
-
+  const navigate = useNavigate();
 
 
 function getQueryParam(param) {
@@ -14,9 +14,6 @@ function getQueryParam(param) {
 }
 
 let lastFetchedMovies = [];
-
-
-
 
 function renderMovies(movies) {
   const movieWrapper = document.querySelector(".movies");
@@ -27,7 +24,7 @@ function renderMovies(movies) {
     const movieHTML = movies.map((movie) => {
         return `<div class="movie">
           <figure class="movie__wrapper">
-            <img class="movie__img" src="${movie.Poster}" alt="${movie.Title}">
+            <img class="movie__img" src="${movie.Poster}" alt="${movie.Title}" data-imdb-id="${movie.imdbID}" />
           </figure>
           <div class="movie__info">
             <h2 class="movie__title">${movie.Title}</h2>
@@ -50,6 +47,13 @@ React.useEffect(() => {
     return undefined;
   }
 
+  function handleMovieClick(event) {
+    const movieImage = event.target.closest('[data-imdb-id]');
+    if (movieImage) {
+      navigate(`/Movie?imdbID=${encodeURIComponent(movieImage.dataset.imdbId)}`);
+    }
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
     resultsElement.innerHTML = "";
@@ -70,6 +74,7 @@ React.useEffect(() => {
   }
 
   formElement.addEventListener("submit", handleSubmit);
+  resultsElement.addEventListener("click", handleMovieClick);
 
   const searchValue = getQueryParam('search');
   if (searchValue) {
@@ -79,8 +84,14 @@ React.useEffect(() => {
 
   return () => {
     formElement.removeEventListener("submit", handleSubmit);
+    resultsElement.removeEventListener("click", handleMovieClick);
   };
-}, []);
+}, [navigate]);
+
+
+
+
+
 
 
 
@@ -95,9 +106,16 @@ function filterMovies(event) {
     sortedMovies.sort((a, b) => a.Title.localeCompare(b.Title));
   } else if (event.target.value === "Z-A") {
     sortedMovies.sort((a, b) => b.Title.localeCompare(a.Title));
-  }
+  } else if (event.target.value === "Year Ascending") {
+    sortedMovies.sort((a, b) => a.Year.localeCompare(b.Year));
+  } else if (event.target.value === "Year Descending") {
+    sortedMovies.sort((a, b) => b.Year.localeCompare(a.Year));
+  } 
   renderMovies(sortedMovies);
 }
+
+
+
 
 
 
@@ -107,8 +125,8 @@ function filterMovies(event) {
        <section id="landing">
             <div className="container">
                 <div className="row">
-                    <div className="movie__header">
-                        <h2 className="section__title movie__header--title">Browse Movies</h2>
+                    <div className="movies__header">
+                        <h2 className="section__title movies__header--title">Browse Movies</h2>
                         <div className="search__ways">
                         <form className="search__bar">
                             <input type="text" className="searchInput" placeholder="Search movies..." />
@@ -120,6 +138,8 @@ function filterMovies(event) {
                           <option value="" disabled>Filter</option>
                                 <option value="A-Z">A-Z</option>
                                 <option value="Z-A">Z-A</option>
+                                <option value="Year Ascending">Year Ascending</option>
+                                <option value="Year Descending">Year Descending</option>
                         </select>
                         </div>
                     </div>
@@ -130,8 +150,8 @@ function filterMovies(event) {
             <div className="container">
                 <div className="row">
                     <div className="movies">
-                        <div className="movie" >
-                          
+                        <div className="movie">
+                            
                         </div>
                     </div>
                 </div>

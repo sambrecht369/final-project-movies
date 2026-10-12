@@ -5,6 +5,7 @@ import Nav from './Components/Nav/nav';
 import Footer from './Components/Footer/footer'
 import Home from './Pages/Home/home'
 import Movies from './Pages/Movies/movies'
+import Movie from './Pages/Movie/movie';
 
 
 
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/Movies' element={<Movies />} />
+            <Route path='/Movie' element={<Movie />} />
           </Routes>
         </main>
         <Footer />
