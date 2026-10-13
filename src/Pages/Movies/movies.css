@@ -33,8 +33,7 @@
     align-items: center;
     padding: 20px 50px;
     max-height: fit-content;
-    max-width: fit-content;
-    
+    max-width: fit-content;    
 }
 .movies .movie__wrapper {
     display: flex;
@@ -44,6 +43,7 @@
     text-align: center;
     flex: 0 0 250px;
     width: 100px;
+    cursor: pointer;
 }
 
 .movies .movie__img {

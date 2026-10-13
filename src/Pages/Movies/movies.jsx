@@ -117,9 +117,6 @@ function filterMovies(event) {
 
 
 
-
-
-
   return (
     <div>
        <section id="landing">
